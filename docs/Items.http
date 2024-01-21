@@ -1,0 +1,42 @@
+@baseUrl = http://localhost:3000/api
+
+### Item Lists
+GET {{baseUrl}}/items
+    ?page=1
+    &pageSize=10
+    # &minPrice=200000
+    # &maxPrice=400000 
+    &orderBy=price
+    &orderType=asc
+
+### Item Details
+GET {{baseUrl}}/items/3a45f210-6cdc-4b31-ba71-5d9d5a1f926b HTTP/1.1
+
+### Create Item
+POST {{baseUrl}}/items HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "product 1",
+    "description": "product 1 terbaik",
+    "price": 10000,
+    "quantity": 10,
+    "image": ""
+}
+
+### Update Item
+PUT {{baseUrl}}/items/3a45f210-6cdc-4b31-ba71-5d9d5a1f926b HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "product 1",
+    "description": "product 1 terbaik",
+    "price": 10000,
+    "quantity": 10
+}
+
+### Delete Item
+DELETE  {{baseUrl}}/items/3a45f210-6cdc-4b31-ba71-5d9d5a1f926b HTTP/1.1
+
+### Restore Item
+GET  {{baseUrl}}/items/restore/3a45f210-6cdc-4b31-ba71-5d9d5a1f926b HTTP/1.1

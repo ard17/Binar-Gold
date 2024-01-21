@@ -1,0 +1,37 @@
+@baseUrl = http://localhost:3000/api
+
+### List Address User
+GET {{baseUrl}}/addresses/user/c92e6eb6-89fd-4aca-8c48-85cfb7ef72a5
+
+### List All Address
+GET {{baseUrl}}/addresses
+
+### Address Details
+GET {{baseUrl}}/addresses/d09effcb-2918-4c0a-8d36-3e09debb1a62 
+
+### Create Address
+POST {{baseUrl}}/addresses HTTP/1.1
+Content-Type: application/json
+
+{
+    "user_id": "3815dc6c-d35a-4575-b393-85e5a97c170e",
+    "province": "Jawa Barat",
+    "city": "Kota Bekasi",
+    "district": "Bekasi Timur",
+    "sub_district": "Duren Jaya",
+    "postal_code": 17111,
+    "address": "Jl. Juanda No. 1",
+    "is_main": true
+  }
+
+### Update Item
+PUT {{baseUrl}}/addresses/7513c419-0529-462b-ba11-0b2a64db6673  HTTP/1.1
+Content-Type: application/json
+
+{
+    "address": "Jl. Juanda No. 20",
+    "is_main": false
+}
+
+### Delete Item
+DELETE  {{baseUrl}}/addresses/7513c419-0529-462b-ba11-0b2a64db6673 HTTP/1.1

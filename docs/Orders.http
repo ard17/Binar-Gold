@@ -1,0 +1,36 @@
+@baseUrl = http://localhost:3000/api
+
+### Order Lists
+GET {{baseUrl}}/orders
+    ?page=1
+    &pageSize=10
+
+### Order Details
+GET {{baseUrl}}/orders/83725005-5d46-438e-a962-e534a7329fe6 HTTP/1.1
+
+### Create Order
+POST {{baseUrl}}/orders HTTP/1.1
+Content-Type: application/json
+
+{
+    "user_id": "c92e6eb6-89fd-4aca-8c48-85cfb7ef72a5",
+    "items":[{
+      "id": "3d781966-77ff-49d3-83de-0d2330526e2b",
+      "name": "Men's Casual T-shirt",
+      "price": 150000,
+      "quantity": 2
+    },{
+      "id": "32de157c-dc95-4ad0-ba2e-617a15c6653f",
+      "name": "Graphic Hoodie",
+      "price": 250000,
+      "quantity": 1
+    }]
+}
+
+### Update Status Order
+PUT {{baseUrl}}/orders/83725005-5d46-438e-a962-e534a7329fe6 HTTP/1.1
+Content-Type: application/json
+
+{
+    "status": "canceled"
+}
