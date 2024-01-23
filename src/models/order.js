@@ -52,6 +52,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         defaultValue: DataTypes.NOW,
       },
+      //Note: Kolom ini juga harusnya allowNull false karena total belanja user tidak mungkin kosong 
       total_price: DataTypes.FLOAT,
     },
     {

@@ -25,6 +25,7 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false,
       },
+      //Note: Penamaan kolom bisa dibuat konsisten. is_login pakai snake_case tapi 3 kolom dibawah pakai camelCase. Silahkan dibuat konsisten untuk kedepannya. Konsistensi itu penting meskipun terlihat remeh.
       is_login: {
         type: Sequelize.BOOLEAN,
         allowNull: false,

@@ -34,6 +34,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         defaultValue: 1,
       },
+      //Note: Sama seperti note di migration user
       createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE,
     });

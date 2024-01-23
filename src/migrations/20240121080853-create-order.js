@@ -31,6 +31,7 @@ module.exports = {
         allowNull: false,
         defaultValue: "pending",
       },
+      //Note: Order date dan created at disini harusnya valuenya akan selalu sama. Karena ada potensi duplicate value, lebih wise jika gunakan salah satu saja
       order_date: {
         type: Sequelize.DATE,
         allowNull: false,
@@ -39,6 +40,7 @@ module.exports = {
       total_price: {
         type: Sequelize.FLOAT,
       },
+      //Note: Sama seperti note di migration user
       createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE,
     });

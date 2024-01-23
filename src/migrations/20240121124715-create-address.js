@@ -49,6 +49,7 @@ module.exports = {
         allowNull: false,
         defaultValue: false,
       },
+      //Note: Sama seperti note di migration user
       createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE,
     });

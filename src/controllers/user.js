@@ -45,6 +45,9 @@ const updateUser = async (req, res) => {
       res.status(404).json(Response.Failed(ErrorMessage.UserNotFound));
     }
   } catch (error) {
+    //Note: Pada dasarnya kita perlu melakukan mapping ataupun validasi lebih untuk menentukan error seperti apa yang status codenya 400 maupun 500. Bisa dipertimbangkan ulang penggunaan hardcode 400 di catch karena selalu ada kemungkinan error bukan karena validasi di database tapi melalui code proses lain. Atau bisa gunakan error handler dari express dengan menambahkan next di parameter (req, res, next)
+
+    // Note ini berlaku untuk endpoint lain
     res.status(400).json(Response.Failed(error.message));
   }
 };
@@ -80,6 +83,7 @@ const register = async (req, res) => {
       const id = dataValues.id;
       await User.restore({ where: { id } });
     } else {
+      //Note: Hati-hati jika menyimpan password user langsung tanpa enkripsi. Bisa gunakan library seperti bcryptjs untuk hashing password dan dikombinasikan dengan hooks milik sequelize. Silahkan baca hooks beforeCreate untuk penggunaan lebih lanjut
       await User.create({ email, username, password });
     }
     res.status(201).json(Response.Success());
