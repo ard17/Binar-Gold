@@ -35,6 +35,6 @@ jobs:
           DB_NAME: ${{ secrets.DB_NAME }}
         run: |
           cd /app/binar-gold
-          echo '{ "development": { "username": "postgres", "password": "pass", "database": "binar_gold_chall", "host": "127.0.0.1", "dialect": "postgres" } }' > config/config.json
+          echo '{ "development": { "username": "$DB_NAME", "password": "$DB_PASSWORD", "database": "$DB_NAME", "host": "$DB_HOST", "dialect": "postgres" } }' > config/config.json
           npm i
           npm start
