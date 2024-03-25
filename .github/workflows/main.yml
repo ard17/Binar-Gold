@@ -24,7 +24,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           source: "."
-          target: "~/binar-gold"
+          target: "/app/binar-gold"
       - name: create config db & run apps
         shell: bash
         env:
@@ -34,7 +34,7 @@ jobs:
           DB_PORT: ${{ secrets.DB_PORT }}
           DB_NAME: ${{ secrets.DB_NAME }}
         run: |
-          cd ~/binar-gold
+          cd /app/binar-gold
           echo '{ "development": { "username": "postgres", "password": "pass", "database": "binar_gold_chall", "host": "127.0.0.1", "dialect": "postgres" } }' > config/config.json
           npm i
           npm start
