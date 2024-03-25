@@ -1,0 +1,42 @@
+name: binar-gold
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v2
+        with:
+          ref: main
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18.x
+      - name: copy file via ssh
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          source: "."
+          target: "~/binar-gold"
+          script: |
+            cd ~/binar-gold
+            npm i
+      - name: create config db & run apps
+        shell: bash
+        env:
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_PORT: ${{ secrets.DB_PORT }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+        run: |
+          cd ~/binar-gold
+          echo '{ "development": { "username": "postgres", "password": "pass", "database": "binar_gold_chall", "host": "127.0.0.1", "dialect": "postgres" } }' > config/config.json
+          npm start
