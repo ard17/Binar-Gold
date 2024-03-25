@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: 18.x
       - name: copy file via ssh
-        uses: appleboy/scp-action@v0.1.7
+        uses: appleboy/ssh-action@v0.1.7
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
@@ -25,16 +25,5 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           source: "."
           target: "/app/binar-gold"
-      - name: create config db & run apps
-        shell: bash
-        env:
-          DB_USERNAME: ${{ secrets.DB_USERNAME }}
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-          DB_HOST: ${{ secrets.DB_HOST }}
-          DB_PORT: ${{ secrets.DB_PORT }}
-          DB_NAME: ${{ secrets.DB_NAME }}
-        run: |
-          cd /app/binar-gold
-          echo '{ "development": { "username": "$DB_NAME", "password": "$DB_PASSWORD", "database": "$DB_NAME", "host": "$DB_HOST", "dialect": "postgres" } }' > config/config.json
-          npm i
-          npm start
+          script: |
+            echo '{ "development": { "username": "${{ secrets.DB_NAME }}", "password": "${{ secrets.DB_PASSWORD }}", "database": "${{ secrets.DB_NAME }}", "host": "${{ secrets.DB_HOST }}", "dialect": "postgres" } }' > config/config.json
